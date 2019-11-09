@@ -9,7 +9,7 @@ generust-example-project is an example application built using [generust](https:
 
 Running as a client application or shared server, `generust-example-project` has a focus on performance, correctness, and developer comfort.
 
-See [installing.md](doc/installing.md) for installation guidance.
+See [installing.md](doc/installing.md) for installation guidance. After installing, run `generust-example-project -h` to get started.
 
 See [scripts.md](doc/scripts.md) for available tools for building, running, and packaging the app.
 
