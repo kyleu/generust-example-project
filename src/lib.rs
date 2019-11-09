@@ -15,8 +15,12 @@
 #![warn(unused_results)]
 #![warn(variant_size_differences)]
 #![warn(missing_docs)]
-#![doc(html_favicon_url = "https://raw.githubusercontent.com/generust-example-project/generust-example-project/master/crates/assets/embed/favicon.ico")]
-#![doc(html_logo_url = "https://raw.githubusercontent.com/generust-example-project/generust-example-project/master/crates/assets/embed/favicon.png")]
+#![doc(
+  html_favicon_url = "https://raw.githubusercontent.com/generust-example-project/generust-example-project/master/crates/assets/embed/favicon.ico"
+)]
+#![doc(
+  html_logo_url = "https://raw.githubusercontent.com/generust-example-project/generust-example-project/master/crates/assets/embed/favicon.png"
+)]
 #![doc(issue_tracker_base_url = "https://github.com/generust-example-project/generust-example-project/issues/")]
 #![windows_subsystem = "windows"]
 
@@ -63,7 +67,9 @@ pub mod android {
 
   #[no_mangle]
   #[allow(unsafe_code)]
-  pub unsafe extern "C" fn Java_com_generust-example-project_generust_example_project_generust_example_project_go(env: JNIEnv<'_>, _: JClass<'_>) {
+  pub unsafe extern "C" fn Java_com_generust_example_project_generust_example_project_generust_example_project_go(
+    env: JNIEnv<'_>, _: JClass<'_>
+  ) {
     println!("Android!");
     go();
   }

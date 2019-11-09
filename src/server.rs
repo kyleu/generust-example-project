@@ -58,7 +58,11 @@ pub(crate) fn start_server(cfg: AppConfig, port_tx: std::sync::mpsc::Sender<u16>
     Ok(s) => {
       let port = s.addrs()[0].port();
       let _ = port_tx.send(port);
-      let msg = format!("[generust-example-project] started, open http://{}:{} to get going!", cfg.address(), port);
+      let msg = format!(
+        "[generust-example-project] started, open http://{}:{} to get going!",
+        cfg.address(),
+        port
+      );
       slog::info!(cfg.root_logger(), "{}", msg);
       s.run().map_err(|e| Error::from(format!("Error creating web server: {:?}", e)))
     }

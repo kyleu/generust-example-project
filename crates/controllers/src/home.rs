@@ -18,7 +18,9 @@ pub fn health() -> HttpResponse {
 
 /// Available at `/profile`
 pub fn profile(session: Session, cfg: web::Data<AppConfig>, req: HttpRequest) -> HttpResponse {
-  crate::act(&session, &cfg, &req, |ctx| generust_example_project_templates::profile::profile(&ctx))
+  crate::act(&session, &cfg, &req, |ctx| {
+    generust_example_project_templates::profile::profile(&ctx)
+  })
 }
 
 /// Available by posting to `/profile`
@@ -40,10 +42,14 @@ pub fn profile_post(session: Session, cfg: web::Data<AppConfig>, req: HttpReques
 
 /// Available at `/settings`
 pub fn settings(session: Session, cfg: web::Data<AppConfig>, req: HttpRequest) -> HttpResponse {
-  crate::act(&session, &cfg, &req, |ctx| generust_example_project_templates::settings::settings(&ctx))
+  crate::act(&session, &cfg, &req, |ctx| {
+    generust_example_project_templates::settings::settings(&ctx)
+  })
 }
 
 /// Available by posting to `/settings`
 pub fn settings_post(session: Session, cfg: web::Data<AppConfig>, req: HttpRequest) -> HttpResponse {
-  crate::act(&session, &cfg, &req, |ctx| generust_example_project_templates::settings::settings(&ctx))
+  crate::act(&session, &cfg, &req, |ctx| {
+    generust_example_project_templates::settings::settings(&ctx)
+  })
 }

@@ -8,11 +8,11 @@ extern "C" {
   pub(crate) fn log(s: &str, style: &str);
 
   #[allow(unsafe_code)]
-  #[wasm_bindgen(js_namespace = generust-example-project)]
+  #[wasm_bindgen(js_namespace = generust_example_project)]
   pub(crate) fn activate_tab(id: &str, idx: usize);
 
   #[allow(unsafe_code)]
-  #[wasm_bindgen(js_namespace = generust-example-project)]
+  #[wasm_bindgen(js_namespace = generust_example_project)]
   pub(crate) fn wire_textarea(id: &str);
 }
 

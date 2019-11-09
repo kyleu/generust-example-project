@@ -23,7 +23,7 @@ members = [
 
 [lib]
 crate-type = ["dylib", "staticlib", "rlib"]
-name = "generust-example-project"
+name = "generust_example_project"
 
 [dependencies]
 actix-http = "0.2.11"

@@ -34,13 +34,10 @@ impl std::fmt::Debug for RequestContext {
 
 impl RequestContext {
   pub fn new(
-    app: AppConfig,
-    user_id: uuid::Uuid,
-    user_profile: UserProfile,
-    router: impl Router + 'static,
-    log: slog::Logger,
+    app: AppConfig, user_id: uuid::Uuid, user_profile: UserProfile, router: impl Router + 'static, log: slog::Logger,
     flash: Option<(String, String)>
-  ) -> RequestContext {
+  ) -> RequestContext
+  {
     let log = log.new(slog::o!("user_id" => user_id.to_string()));
     RequestContext {
       app,

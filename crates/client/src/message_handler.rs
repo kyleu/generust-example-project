@@ -1,7 +1,7 @@
 use crate::ctx::ClientContext;
 
-use generust_example_project_core::{ResponseMessage, Result};
 use generust_example_project_core::profile::UserProfile;
+use generust_example_project_core::{ResponseMessage, Result};
 
 use maud::html;
 use std::sync::RwLock;

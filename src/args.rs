@@ -1,7 +1,7 @@
 use clap::{App, Arg, ArgMatches, SubCommand};
 
 pub(crate) fn get_matches<'a>() -> ArgMatches<'a> {
-  App::new(generust-example-project_core::APPNAME)
+  App::new(generust_example_project_core::APPNAME)
     .version("0.0.20")
     .author(clap::crate_authors!())
     .about("A work in progress")

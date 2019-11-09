@@ -6,17 +6,9 @@ use serde::{Deserialize, Serialize};
 #[allow(variant_size_differences)]
 #[derive(Debug, Serialize, Deserialize)]
 pub enum ResponseMessage {
-  Hello {
-    u: Box<crate::profile::UserProfile>,
-    b: bool
-  },
-  ServerError {
-    reason: String,
-    content: String
-  },
-  Pong {
-    v: i64
-  }
+  Hello { u: Box<crate::profile::UserProfile>, b: bool },
+  ServerError { reason: String, content: String },
+  Pong { v: i64 }
 }
 
 impl ResponseMessage {
