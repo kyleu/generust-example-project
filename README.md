@@ -25,10 +25,18 @@ See [scripts.md](doc/scripts.md) for available tools for building, running, and 
 - `generust-example-project-templates`: Contains Maud templates used by the server to render responses
 - `generust-example-project`: Stored in the root of the project, this is the app's main library and binary
 
-## Config Directory
+## Config
+
+The project currently exclusively uses the filesystem for saved data, no database is involved.
+
+### Directories
 
 By default, generust-example-project stores config files in your system's user configuration directory.
 
 - macOS: ~/Library/Application Support/generust-example-project
 - Linux: ~/.config/generust-example-project
 - Windows: %APPDATA%/generust-example-project/generust-example-project
+
+### Files
+
+`profile/*`: User profile information
