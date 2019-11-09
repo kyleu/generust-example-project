@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+project_dir=${dir}/..
+cd $project_dir
+
+cargo build --release
+
+mkdir -p build/macos
+cp target/release/generust-example-project build/macos/generust-example-project
+gzip -f build/macos/generust-example-project --keep
