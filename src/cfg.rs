@@ -1,6 +1,6 @@
 use generust_example_project_service::AppConfig;
 
-const DEFAULT_PORT: u16 = 5500;
+pub(crate) const DEFAULT_PORT: u16 = 5050;
 
 #[cfg(debug_assertions)]
 fn is_debug() -> bool {
