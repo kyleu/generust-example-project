@@ -4,18 +4,28 @@ use generust_example_project_core::{RequestMessage, ResponseMessage, Result};
 /// Core application logic, routing [RequestMessage](generust_example_project_core::RequestMessage)s and emitting [ResponseMessage](generust_example_project_core::ResponseMessage)s.
 #[derive(Debug)]
 pub struct MessageHandler {
+  id: uuid::Uuid,
   ctx: RequestContext,
   log: slog::Logger
 }
 
 impl MessageHandler {
-  pub fn new(ctx: RequestContext) -> MessageHandler {
+  pub fn new(id: uuid::Uuid, ctx: RequestContext) -> MessageHandler {
     let log = ctx.log().new(slog::o!("service" => "message_handler"));
-    MessageHandler { ctx, log }
+    MessageHandler { id, ctx, log }
+  }
+
+  pub fn id(&self) -> &uuid::Uuid {
+    &self.id
+  }
+
+  pub fn ctx(&self) -> &RequestContext {
+    &self.ctx
   }
 
   pub fn on_open(&self) -> Result<Vec<ResponseMessage>> {
     Ok(vec![ResponseMessage::Hello {
+      session_id: *self.id(),
       u: Box::new((*self.ctx.user_profile()).clone()),
       b: !self.ctx.app().verbose()
     }])
