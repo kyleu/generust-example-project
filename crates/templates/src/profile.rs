@@ -89,9 +89,7 @@ pub fn profile(ctx: &RequestContext, router: &dyn Router) -> Result<Markup> {
       }
     "#))
   };
-  Ok(html! {
-    (crate::simple(ctx, router, "Profile", content)?)
-  })
+  crate::simple(ctx, router, "Profile", content)
 }
 
 fn nav_swatch(p: &generust_example_project_core::profile::UserProfile, c: &str) -> Markup {
