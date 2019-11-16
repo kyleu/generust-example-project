@@ -21,6 +21,7 @@
 
 //! `generust-example-project-service` contains the primary logic for the application. It receives [RequestMessage](generust_example_project_core::RequestMessage)s and emits [ResponseMessage](generust_example_project_core::ResponseMessage)s
 
+pub mod cache;
 pub mod cfg;
 pub mod ctx;
 pub mod files;
@@ -31,3 +32,5 @@ pub mod profile;
 pub use cfg::AppConfig;
 #[doc(inline)]
 pub use ctx::RequestContext;
+#[doc(inline)]
+pub use ctx::Router;

@@ -1,6 +1,6 @@
 use actix_web::HttpRequest;
 
-use generust_example_project_service::ctx::Router;
+use generust_example_project_service::Router;
 
 use generust_example_project_core::{Error, Result};
 
