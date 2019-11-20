@@ -4,6 +4,7 @@ use actix_session::Session;
 use actix_web::web::{Data, Form, Path};
 use actix_web::{HttpRequest, HttpResponse};
 
+use generust_example_project_core::util::NotificationLevel;
 use generust_example_project_core::ResponseMessage;
 use generust_example_project_service::AppConfig;
 
@@ -18,20 +19,20 @@ pub fn list(session: Session, cfg: Data<AppConfig>, req: HttpRequest) -> HttpRes
 pub fn connections(session: Session, cfg: Data<AppConfig>, req: HttpRequest) -> HttpResponse {
   crate::act(&session, &cfg, req, |ctx, router| {
     let conn = ctx.app().connections().read().unwrap();
-    generust_example_project_templates::admin::connections(&ctx, router, conn.conn_list(), conn.channel_list())
+    generust_example_project_templates::connections::connections(&ctx, router, conn.conn_list(), conn.channel_list())
   })
 }
 
 #[derive(Debug, serde::Deserialize)]
 pub struct SendForm {
-  level: String,
+  level: NotificationLevel,
   content: String
 }
 
 /// Available at `/admin/conn/{id}`
 pub fn connection_detail(session: Session, cfg: Data<AppConfig>, id: Path<uuid::Uuid>, req: HttpRequest) -> HttpResponse {
   crate::act(&session, &cfg, req, |ctx, router| {
-    generust_example_project_templates::admin::connection_detail(&ctx, router, *id)
+    generust_example_project_templates::connections::connection_detail(&ctx, router, *id)
   })
 }
 
@@ -59,7 +60,7 @@ pub fn connection_send(session: Session, cfg: Data<AppConfig>, id: Path<uuid::Uu
 /// Available at `/admin/channel/{id}`
 pub fn channel_detail(session: Session, cfg: Data<AppConfig>, key: Path<String>, req: HttpRequest) -> HttpResponse {
   crate::act(&session, &cfg, req, |ctx, router| {
-    generust_example_project_templates::admin::channel_detail(&ctx, router, &key)
+    generust_example_project_templates::connections::channel_detail(&ctx, router, &key)
   })
 }
 

@@ -1,3 +1,4 @@
+use crate::util::NotificationLevel;
 use crate::{Error, Result};
 
 use serde::{Deserialize, Serialize};
@@ -20,7 +21,7 @@ pub enum ResponseMessage {
     v: i64
   },
   Notification {
-    level: String,
+    level: NotificationLevel,
     content: String
   }
 }

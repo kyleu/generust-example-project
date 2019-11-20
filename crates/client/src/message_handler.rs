@@ -1,6 +1,7 @@
 use crate::ctx::ClientContext;
 
 use generust_example_project_core::profile::UserProfile;
+use generust_example_project_core::util::NotificationLevel;
 use generust_example_project_core::{ResponseMessage, Result};
 
 use maud::html;
@@ -14,6 +15,9 @@ impl MessageHandler {
     match msg {
       ResponseMessage::Connected { connection_id, u, b } => on_connected(ctx, connection_id, &u, b)?,
       ResponseMessage::Pong { v } => on_pong(ctx, v)?,
+      ResponseMessage::Notification { level, content } => on_notification(level, content)?,
+
+      // Custom Messages
       _ => warn!("Unhandled ResponseMessage [{:?}]", msg)
     };
     Ok(())
@@ -31,8 +35,8 @@ fn on_connected(ctx: &RwLock<ClientContext>, connection_id: uuid::Uuid, u: &User
   Ok(())
 }
 
-fn on_notification(level: String, content: String) -> Result<()> {
-  crate::js::notify(&level, &content);
+fn on_notification(level: NotificationLevel, content: String) -> Result<()> {
+  crate::logging::notify(level, &content);
   Ok(())
 }
 
