@@ -1,4 +1,5 @@
 use crate::util::NotificationLevel;
+
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;

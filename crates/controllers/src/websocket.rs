@@ -21,22 +21,15 @@ impl ServerSocket {
     &self.handler
   }
 
-  fn handle_text(&self, s: String, wsc: &mut WebsocketContext<Self>) -> Result<()> {
+  fn handle_text(&self, s: String, _wsc: &mut WebsocketContext<Self>) -> Result<()> {
     let req = RequestMessage::from_json(&s)?;
-    self.handle_message(req, wsc)
+    self.handler.on_message(req)
   }
 
-  fn handle_binary(&self, bytes: bytes::Bytes, wsc: &mut WebsocketContext<Self>) -> Result<()> {
+  fn handle_binary(&self, bytes: bytes::Bytes, _wsc: &mut WebsocketContext<Self>) -> Result<()> {
     let b: &[u8] = bytes.as_ref();
     let req = RequestMessage::from_binary(&b.to_vec())?;
-    self.handle_message(req, wsc)
-  }
-
-  fn handle_message(&self, req: RequestMessage, wsc: &mut WebsocketContext<Self>) -> Result<()> {
-    for msg in self.handler.on_message(req)? {
-      self.send_ws(&msg, wsc)?;
-    }
-    Ok(())
+    self.handler.on_message(req)
   }
 
   fn handle_error(&self, e: &anyhow::Error, wsc: &mut WebsocketContext<Self>) {
