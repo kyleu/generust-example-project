@@ -1,7 +1,6 @@
-use maud::{html, Markup};
-
-use generust_example_project_core::Result;
+use anyhow::Result;
 use generust_example_project_service::{RequestContext, Router};
+use maud::{html, Markup};
 
 pub fn index(ctx: &RequestContext, router: &dyn Router) -> Result<Markup> {
   let content = html! {

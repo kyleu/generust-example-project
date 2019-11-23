@@ -1,3 +1,3 @@
-fn main() -> generust_example_project_core::Result<()> {
+fn main() -> anyhow::Result<()> {
   generust_example_project::go()
 }

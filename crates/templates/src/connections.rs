@@ -1,8 +1,7 @@
-use maud::{html, Markup};
-
+use anyhow::Result;
 use generust_example_project_core::util::NotificationLevel;
-use generust_example_project_core::Result;
 use generust_example_project_service::{RequestContext, Router};
+use maud::{html, Markup};
 
 pub fn connections(
   ctx: &RequestContext, router: &dyn Router, conns: Vec<uuid::Uuid>, channels: Vec<(String, Vec<uuid::Uuid>)>

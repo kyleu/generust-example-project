@@ -1,9 +1,9 @@
 use crate::ctx::ClientContext;
 
+use anyhow::Result;
 use generust_example_project_core::profile::UserProfile;
 use generust_example_project_core::util::NotificationLevel;
-use generust_example_project_core::{ResponseMessage, Result};
-
+use generust_example_project_core::ResponseMessage;
 use maud::html;
 use std::sync::RwLock;
 

@@ -1,7 +1,8 @@
 use crate::socket::ws::ClientSocket;
-use generust_example_project_core::profile::UserProfile;
-use generust_example_project_core::{Error, RequestMessage, Result};
 
+use anyhow::Result;
+use generust_example_project_core::profile::UserProfile;
+use generust_example_project_core::RequestMessage;
 use std::rc::Rc;
 use std::sync::RwLock;
 use uuid::Uuid;
@@ -12,17 +13,17 @@ pub(crate) struct ClientContext {
   window: Window,
   document: Document,
   socket: ClientSocket,
-  connection_id: Option<uuid::Uuid>,
+  connection_id: Option<Uuid>,
   profile: UserProfile
 }
 
 impl ClientContext {
   pub(crate) fn new() -> Result<Rc<RwLock<ClientContext>>> {
     let binary = true;
-    let window = web_sys::window().ok_or_else(|| Error::from("Can't find [window]"))?;
-    let document = window.document().ok_or_else(|| Error::from("Can't find [document]"))?;
-    let loc = &document.location().ok_or_else(|| Error::from("Can't find [location]"))?;
-    let url = loc.href().map_err(|_| Error::from("Can't find [href]"))?;
+    let window = web_sys::window().ok_or_else(|| anyhow::anyhow!("Can't find [window]"))?;
+    let document = window.document().ok_or_else(|| anyhow::anyhow!("Can't find [document]"))?;
+    let loc = &document.location().ok_or_else(|| anyhow::anyhow!("Can't find [location]"))?;
+    let url = loc.href().map_err(|_| anyhow::anyhow!("Can't find [href]"))?;
     let socket = ClientSocket::new(&url, binary)?;
     let profile = UserProfile::default();
 

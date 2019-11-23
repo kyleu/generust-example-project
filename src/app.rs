@@ -1,7 +1,7 @@
 use crate::server::start_server;
 
 #[cfg(any(target_os = "macos", target_os = "windows"))]
-pub(crate) fn start(cfg: generust_example_project_service::AppConfig) -> generust_example_project_core::Result<()> {
+pub(crate) fn start(cfg: generust_example_project_service::AppConfig) -> anyhow::Result<()> {
   let (port_tx, port_rx) = std::sync::mpsc::channel();
   match cfg.task().as_ref() {
     "app" => {
@@ -15,14 +15,14 @@ pub(crate) fn start(cfg: generust_example_project_service::AppConfig) -> generus
         .user_data(())
         .invoke_handler(|_webview, _arg| Ok(()))
         .run()
-        .map_err(|e| generust_example_project_core::Error::from(format!("Error creating webview: {:?}", e)))
+        .map_err(|e| anyhow::anyhow!("Error creating webview: {:?}", e))
     }
     _ => start_server(cfg, port_tx)
   }
 }
 
 #[cfg(not(any(target_os = "macos", target_os = "windows")))]
-pub(crate) fn start(cfg: generust_example_project_service::AppConfig) -> generust_example_project_core::Result<()> {
+pub(crate) fn start(cfg: generust_example_project_service::AppConfig) -> anyhow::Result<()> {
   let (port_tx, _) = std::sync::mpsc::channel();
   start_server(cfg, port_tx)
 }

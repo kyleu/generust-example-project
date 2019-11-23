@@ -1,9 +1,7 @@
-use maud::{html, Markup};
-
-use generust_example_project_core::Result;
-use generust_example_project_service::{RequestContext, Router};
-
+use anyhow::Result;
 use generust_example_project_core::build_info;
+use generust_example_project_service::{RequestContext, Router};
+use maud::{html, Markup};
 
 fn container(ctx: &RequestContext, router: &dyn Router, result: &str, content: Markup) -> Result<Markup> {
   let content = html! {

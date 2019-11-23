@@ -1,5 +1,5 @@
+use anyhow::Result;
 use generust_example_project_core::profile::UserProfile;
-use generust_example_project_core::Result;
 
 pub fn load(files: &crate::files::FileService, user_id: uuid::Uuid) -> UserProfile {
   let path = format!("profile/{}", user_id);

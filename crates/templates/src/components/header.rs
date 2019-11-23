@@ -1,7 +1,6 @@
-use maud::{html, Markup};
-
-use generust_example_project_core::Result;
+use anyhow::Result;
 use generust_example_project_service::{RequestContext, Router};
+use maud::{html, Markup};
 
 pub(crate) fn header(ctx: &RequestContext, router: &dyn Router, title: &str) -> Result<Markup> {
   Ok(html! {

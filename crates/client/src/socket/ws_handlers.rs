@@ -1,6 +1,7 @@
 use crate::ctx::ClientContext;
-use generust_example_project_core::{Error, ResponseMessage, Result};
 
+use anyhow::Result;
+use generust_example_project_core::ResponseMessage;
 use js_sys::{ArrayBuffer, Uint8Array};
 use std::rc::Rc;
 use std::sync::RwLock;
@@ -52,7 +53,7 @@ fn on_blob_message(ctx: &Rc<RwLock<ClientContext>>, data: JsValue) -> Result<()>
 fn on_text_message(ctx: &Rc<RwLock<ClientContext>>, data: JsValue) -> Result<()> {
   match data.as_string() {
     Some(s) => handle(ctx, ResponseMessage::from_json(&s)?),
-    None => Err(Error::from(format!("Can't convert received data to a string: {:?}", data)))
+    None => Err(anyhow::anyhow!(format!("Can't convert received data to a string: {:?}", data)))
   }
 }
 

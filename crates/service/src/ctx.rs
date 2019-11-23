@@ -1,8 +1,7 @@
-use slog;
-
 use crate::cfg::AppConfig;
+
+use anyhow::Result;
 use generust_example_project_core::profile::UserProfile;
-use generust_example_project_core::Result;
 
 /// Provides reverse routing of urls
 pub trait Router {

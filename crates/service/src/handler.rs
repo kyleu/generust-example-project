@@ -1,5 +1,7 @@
 use crate::RequestContext;
-use generust_example_project_core::{RequestMessage, ResponseMessage, Result};
+
+use anyhow::Result;
+use generust_example_project_core::{RequestMessage, ResponseMessage};
 
 /// Core application logic, routing [RequestMessage](generust_example_project_core::RequestMessage)s and emitting [ResponseMessage](generust_example_project_core::ResponseMessage)s.
 #[derive(Debug)]

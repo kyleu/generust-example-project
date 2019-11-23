@@ -1,5 +1,7 @@
 use crate::ctx::ClientContext;
-use generust_example_project_core::{RequestMessage, Result};
+
+use anyhow::Result;
+use generust_example_project_core::RequestMessage;
 
 pub(crate) struct EventHandler {}
 
