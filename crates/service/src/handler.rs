@@ -2,18 +2,19 @@ use crate::RequestContext;
 
 use anyhow::Result;
 use generust_example_project_core::{RequestMessage, ResponseMessage};
+use uuid::Uuid;
 
 /// Core application logic, routing [RequestMessage](generust_example_project_core::RequestMessage)s and emitting [ResponseMessage](generust_example_project_core::ResponseMessage)s.
 #[derive(Debug)]
 pub struct MessageHandler {
-  connection_id: uuid::Uuid,
+  connection_id: Uuid,
   channel_id: String,
   ctx: RequestContext,
   log: slog::Logger
 }
 
 impl MessageHandler {
-  pub fn new(connection_id: uuid::Uuid, channel_id: String, ctx: RequestContext) -> MessageHandler {
+  pub fn new(connection_id: Uuid, channel_id: String, ctx: RequestContext) -> MessageHandler {
     let log = ctx
       .log()
       .new(slog::o!("connection" => format!("{}", connection_id), "service" => "message_handler", "channel" => channel_id.clone()));
@@ -25,7 +26,7 @@ impl MessageHandler {
     }
   }
 
-  pub fn connection_id(&self) -> &uuid::Uuid {
+  pub fn connection_id(&self) -> &Uuid {
     &self.connection_id
   }
 
@@ -40,6 +41,7 @@ impl MessageHandler {
   pub fn on_open(&self) -> Result<Vec<ResponseMessage>> {
     Ok(vec![ResponseMessage::Connected {
       connection_id: *self.connection_id(),
+      user_id: *self.ctx().user_id(),
       u: Box::new((*self.ctx.user_profile()).clone()),
       b: !self.ctx.app().verbose()
     }])
@@ -65,6 +67,19 @@ impl MessageHandler {
 
   fn send_to_self(&self, msg: ResponseMessage) -> Result<()> {
     self.ctx().app().send_connection(self.connection_id(), msg);
+    Ok(())
+  }
+
+  fn _send_to_channel(&self, msg: ResponseMessage) -> Result<()> {
+    self.ctx().app().send_channel(self.channel_id(), msg);
+    Ok(())
+  }
+
+  fn _send_to_channel_except_self(&self, msg: ResponseMessage) -> Result<()> {
+    self
+      .ctx()
+      .app()
+      .send_channel_except(self.channel_id(), vec![self.connection_id()], msg);
     Ok(())
   }
 }

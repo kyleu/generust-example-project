@@ -3,10 +3,10 @@ use crate::util::ctx::add_flash;
 use actix_session::Session;
 use actix_web::web::{Data, Form, Path};
 use actix_web::{HttpRequest, HttpResponse};
-
 use generust_example_project_core::util::NotificationLevel;
 use generust_example_project_core::ResponseMessage;
 use generust_example_project_service::AppConfig;
+use uuid::Uuid;
 
 /// Available at `/admin`
 pub fn list(session: Session, cfg: Data<AppConfig>, req: HttpRequest) -> HttpResponse {
@@ -30,14 +30,14 @@ pub struct SendForm {
 }
 
 /// Available at `/admin/conn/{id}`
-pub fn connection_detail(session: Session, cfg: Data<AppConfig>, id: Path<uuid::Uuid>, req: HttpRequest) -> HttpResponse {
+pub fn connection_detail(session: Session, cfg: Data<AppConfig>, id: Path<Uuid>, req: HttpRequest) -> HttpResponse {
   crate::act(&session, &cfg, req, |ctx, router| {
     generust_example_project_templates::connections::connection_detail(&ctx, router, *id)
   })
 }
 
 /// Available by posting to `/admin/conn/{id}`
-pub fn connection_send(session: Session, cfg: Data<AppConfig>, id: Path<uuid::Uuid>, req: HttpRequest, f: Form<SendForm>) -> HttpResponse {
+pub fn connection_send(session: Session, cfg: Data<AppConfig>, id: Path<Uuid>, req: HttpRequest, f: Form<SendForm>) -> HttpResponse {
   crate::redir(&session, &cfg, req, |ctx, router| {
     let msg = ResponseMessage::Notification {
       level: f.level.clone(),

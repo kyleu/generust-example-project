@@ -9,6 +9,7 @@ use anyhow::Result;
 use generust_example_project_core::{RequestMessage, ResponseMessage};
 use generust_example_project_service::handler::MessageHandler;
 use generust_example_project_service::AppConfig;
+use uuid::Uuid;
 
 #[derive(derive_more::Constructor)]
 pub(crate) struct ServerSocket {
@@ -124,7 +125,7 @@ pub fn connect(
     _ => !cfg.verbose()
   };
 
-  let id = uuid::Uuid::new_v4();
+  let id = Uuid::new_v4();
   let handler = MessageHandler::new(id, key.clone(), ctx);
   let socket = ServerSocket::new(binary, handler);
   actix_web_actors::ws::start(socket, &req, stream)
