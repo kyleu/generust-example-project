@@ -12,7 +12,7 @@ pub fn testbed_key(session: Session, cfg: web::Data<AppConfig>, key: web::Path<S
       "gallery" => generust_example_project_templates::testbed::gallery(&ctx, router),
       "prototype" => generust_example_project_templates::testbed::prototype(&ctx, router),
       "scroll" => generust_example_project_templates::testbed::scroll(&ctx, router),
-      _ => Err(anyhow::anyhow!(format!("Cannot find testbed matching [{}]", key)))
+      _ => Err(anyhow::anyhow!("Cannot find testbed matching [{}]", key))
     }
   })
 }

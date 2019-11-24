@@ -1,6 +1,5 @@
-use maud::{html, Markup};
-
 use generust_example_project_service::RequestContext;
+use maud::{html, Markup};
 
 pub(crate) fn gallery(ctx: &RequestContext) -> Markup {
   html! {

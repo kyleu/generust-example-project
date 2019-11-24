@@ -22,7 +22,7 @@
 )]
 #![doc(issue_tracker_base_url = "https://github.com/generust-example-project/generust-example-project/issues/")]
 
-//! `generust-example-project-templates` contains server HTML templates.
+//! `generust-example-project-templates` contains Maud templates used by the server to render responses
 
 pub mod admin;
 pub mod connections;
