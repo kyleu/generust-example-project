@@ -24,7 +24,7 @@ pub(crate) struct ServerSender {
   addr: Addr<ServerSocket>
 }
 
-impl generust_example_project_service::cache::SendCallback for ServerSender {
+impl generust_example_project_service::conn::SendCallback for ServerSender {
   fn send_message(&self, msg: ResponseMessage) {
     self.addr.do_send(SendResponseMessage { msg });
   }

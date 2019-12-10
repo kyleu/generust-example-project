@@ -25,6 +25,11 @@ members = [
 [lib]
 crate-type = ["dylib", "staticlib", "rlib"]
 name = "generust_example_project"
+path = "src/lib.rs"
+
+[[bin]]
+name = "generust_example_project"
+path = "src/main.rs"
 
 [dependencies]
 actix-http = "0.2.11"
