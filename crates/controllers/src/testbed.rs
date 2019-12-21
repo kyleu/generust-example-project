@@ -8,10 +8,10 @@ pub fn testbed_key(session: Session, cfg: web::Data<AppConfig>, key: web::Path<S
   crate::act(&session, &cfg, req, |ctx, router| {
     let k: &str = &key;
     match k {
-      "dump" => generust_example_project_templates::testbed::dump(&ctx, router),
-      "gallery" => generust_example_project_templates::testbed::gallery(&ctx, router),
-      "prototype" => generust_example_project_templates::testbed::prototype(&ctx, router),
-      "scroll" => generust_example_project_templates::testbed::scroll(&ctx, router),
+      "dump" => generust_example_project_templates::testbed::dump(ctx, router),
+      "gallery" => generust_example_project_templates::testbed::gallery(ctx, router),
+      "prototype" => generust_example_project_templates::testbed::prototype(ctx, router),
+      "scroll" => generust_example_project_templates::testbed::scroll(ctx, router),
       _ => Err(anyhow::anyhow!("Cannot find testbed matching [{}]", key))
     }
   })

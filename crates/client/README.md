@@ -1,3 +1,3 @@
 # generust-example-project-client
 
-wasm client for generust-example-project
+WASM web client sources for generust-example-project

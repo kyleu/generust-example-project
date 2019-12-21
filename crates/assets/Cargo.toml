@@ -4,7 +4,10 @@ version = "0.0.1"
 authors = ["Kyle Unverferth <kyle@kyleu.com>"]
 edition = "2018"
 description = "Embedded web assets for generust-example-project"
-homepage = "https://estimate.poker"
+readme = "README.md"
+categories = ["wasm", "web-programming", "web-programming::websocket"]
+keywords = ["static", "assets"]
+homepage = "https://generust-example-project.com"
 repository = "https://github.com/generust-example-project/generust-example-project"
 license = "MIT"
 
